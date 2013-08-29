@@ -37,5 +37,5 @@ case "$1" in
     on) echo "Enabling Proxy";enableProxy;;
     off) echo "Disabling Proxy";disableProxy;;
     status) echo "status";showStatus;;
-    *) echo "Invocation:";echo "	proxy on:	Turns proxy on.";echo "	proxy off:	Turns proxy off.";echo "	proxy status:	Gives status of proxy.";;
+    *) echo "Invocation:";echo "	proxy on:	Turns proxy on.";echo "	proxy off:	Turns proxy off.";echo "	proxy status:	Gives status of proxy.";echo"Use sudo when running me for best results.";;
 esac
