@@ -12,12 +12,17 @@ INTERFACE="Wi-Fi"           # Interface that is reconfigured: run `networksetup 
 SSH_CMD="ssh ${SSH_OPTIONS} ${PORT} -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST}"
 # No need to touch anything beyond this point.
 function enableProxy {
+    echo "Configuring local SOCKS proxy."
     networksetup  -setsocksfirewallproxy ${INTERFACE} localhost ${PORT}
+    echo "Turning on SOCKS proxy state."
     networksetup  -setsocksfirewallproxystate ${INTERFACE} on
+    echo "Running SSH."
     ${SSH_CMD}
 }
 function disableProxy {
+    echo "Killing SSH."
     ps -ax | grep "${SSH_CMD}" | grep -v grep | awk '{print $INFO}'| xargs kill
+    echo "Turning off SOCKS proxy state."
     networksetup  -setsocksfirewallproxystate ${INTERFACE} off
 }
 function showStatus {
