@@ -1,5 +1,6 @@
 #!/bin/bash
 # Proxy configuration tool
+# There are obviously better implementations of this - I plan on improving what I have here.
 # Settings
 SSH_OPTIONS="-C2qTnND"      # SSH settings.
 PORT=8080                   # Localhost port - to be honest this doesn't matter, as we will seamlessly tell Networks/System Preferences this information.
