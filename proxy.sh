@@ -22,9 +22,9 @@ function disableProxy {
 function showStatus {
     ps -ax | grep "${SSH_CMD}" | grep -v grep > /dev/null
     if [ $? -eq 0 ]; then
-        echo "An SSH Tunnel is ON."
+        echo "SSH Tunnel is ON."
     else
-        echo "An SSH Tunnel is OFF."
+        echo "SSH Tunnel is OFF."
     fi
     networksetup -getsocksfirewallproxy ${INTERFACE} | grep Enabled | grep Yes > /dev/null
     if [ $? -eq 0 ]; then
@@ -33,15 +33,9 @@ function showStatus {
         echo "Proxy IS NOT configured for ${INTERFACE}."
     fi
 }
-case "$INFO" in
-    on) echo "Enabling Proxy"
-        enableProxy
-        ;;
-    off)    echo "Disabling Proxy"
-        disableProxy
-        ;;
-    status) echo status
-        showStatus
-        ;;
-    *) echo Options: on to enable proxy, off to disable, status to see status.
+case "$1" in
+    on) echo "Enabling Proxy";enableProxy;;
+    off) echo "Disabling Proxy";disableProxy;;
+    status) echo "status";showStatus;;
+    *) echo "Invocation:";echo "	proxy on:	Turns proxy on.";echo "	proxy off:	Turns proxy off.";echo "	proxy status:	Gives status of proxy.";;
 esac
